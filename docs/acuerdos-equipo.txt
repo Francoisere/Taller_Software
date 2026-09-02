@@ -1,0 +1,19 @@
+Reglas acordadas: Comunicación: Comunicarse activamente siempre grupalmente con todos los integrantes. Esto se verificará mediante equipos de trabajo en plataformas como Teams, GitHub y Whatsapp.  
+
+Reuniones y coordinación: Reuniones todas las semanas los miércoles con la posibilidad de reuniones extraordinarias si es necesario. Se verificará con pautas para reuniones y definiendo objetivos claros para cada sesión.  
+
+Toma de decisiones: Decisiones reversibles por responsable de cada área del desarrollo. Se verificará mediante el registro con commits claros en el repositorio creado.  
+
+Revisión antes de integrar: Toda propuesta de integración o cambio de componentes requiere revisión de los demás integrantes. Se verificará mediante una solicitud revisada por el equipo con su propia aprobación.  
+
+Desacuerdos y escalamiento: Hacer registro de las características de las opciones disponibles, y en caso de no acuerdo consultar a profesor. Se verificará haciendo registro de desacuerdos con la información de su resolución.  
+
+Uso y declaración de IA: Transparencia de herramienta usada, validación humana. Se verificará enfocando parte de las reuniones en la revisión de lo que entregue la IA en lo que código se refiera.  
+
+Responsabilidades iniciales:
+
+Preparar investigación: Responsable es Benjamín Vidal, con apoyo de Franco Vela para el 26 de ago. de 2026.  
+
+Contactar participantes: Responsable es Franco Vela, con apoyo de Sofía Diaz para el 26 de ago. de 2026.  
+Facilitar sesiones: Responsable es Sofía Diaz, con apoyo de Benjamín Vidal para el 26 de ago. de 2026.  
+Registrar y sintetizar: Responsable es Benjamín Rodríguez, con apoyo de Franco Vela para el 26 de ago. de 2026.

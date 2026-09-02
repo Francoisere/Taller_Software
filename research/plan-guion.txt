@@ -1,0 +1,20 @@
+Objetivos de aprendizaje:Identificar mecanismos actuales y adopción de la ley para definir el MVP.  Determinar criterios normativos auditables para las reglas del motor de análisis.  
+
+Establecer limitaciones técnicas/legales (caja negra vs. auditoría interna) para definir el alcance del sistema.  
+
+Diseño de las actividades:Exigencias legales mínimas: Análisis normativo a cargo de Franco Vela (26 de ago. 2026).  
+
+Expectativas del reporte: Entrevistas a encargados de TI/compliance a cargo de Sofía Díaz (02 de sep. 2026).  
+
+Barreras legales de escaneo: Revisión de términos y leyes a cargo de Benjamín Vidal (26 de ago. 2026).  
+
+Elementos técnicos evaluables: Prueba de concepto de scraping a cargo de Benjamín Rodríguez (02 de sep. 2026).  
+
+Plan de registro y resguardo:Se recogerán datos de contacto profesional y metadatos técnicos, sin datos sensibles.  
+Consentimiento mediante formulario digital previo. 
+
+ Almacenamiento en nube institucional protegida (MFA) y repositorio privado en GitHub, con acceso exclusivo a los 4 integrantes y al docente.  
+
+Eliminación al finalizar el periodo lectivo.  
+
+Guion de entrevista: Incluye preguntas para comprender el contexto del rol, la última experiencia revisando el cumplimiento, herramientas utilizadas, barreras de conocimiento y soluciones actuales. Además, incluye preguntas propias sobre el impacto que más preocupa (financiero, reputacional) ante la ley 21.719 y el nivel de acceso que estarían dispuestos a otorgar a una herramienta externa.

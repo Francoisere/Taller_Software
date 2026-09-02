@@ -1,0 +1,7 @@
+Visión integrada: Para equipos de TI y responsables de plataformas web en Chile que necesitan verificar y mantener el cumplimiento de la nueva Ley 21.719 de Protección de Datos Personales sin depender de complejas asesorías legales, DataCheck.cl es una plataforma de auditoría y monitoreo automatizado que detecta brechas de privacidad en todo el sitio web y entrega reportes con tareas técnicas listas para ser ejecutadas. 
+
+A diferencia de las revisiones manuales en planillas Excel o consultorías tradicionales, permite evaluar la conformidad legal de forma continua y 100% externa (caja negra), sin requerir accesos sensibles al backend ni conocimientos jurídicos avanzados.  
+
+Propuesta de valor por actor:Encargado de TI / Desarrollador Web: Ante la frustración por jerga legal y lentitud manual, el producto promete traducir las exigencias de la ley a reglas técnicas objetivas y tickets de remediación sencillos.  
+
+Oficial de Cumplimiento / Gerente: Ante el riesgo de multas y la resistencia a dar accesos internos, el producto promete un diagnóstico total en minutos con escaneo 100% externo sin poner en riesgo la infraestructura. 

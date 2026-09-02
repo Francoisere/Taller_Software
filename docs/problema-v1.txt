@@ -1,0 +1,8 @@
+Idea inicial: Servicio digital que ayuda a verificar que tan preparadas está un servicio ante la vigencia de la ley 21.719. Su evidencia actual son fuentes públicas que dictan la plena vigencia de la ley 21719 el 1 de diciembre de 2026.  
+
+Problema observable: Creación de la Agencia de Protección de Datos Personales (APDP), la cual fiscalizará con multas de hasta 20.000 UTM.  Necesidad o resultado: Necesidad de saber con qué puntos de la propuesta de ley 21.719 cumple o no un servicio.  
+
+Solución hipotética: Servicio que verifica el cumplimiento de propuesta de ley de protección de datos personales en páginas web o aplicaciones mediante un checklist en las propuestas que se puedan comprobar de forma automática o semiautomática. 
+
+Esto aún no es validable y se mantiene como hipótesis.  Declaración del problema integrada: Los encargados de TI en empresas chilenas necesitan monitorear de manera continua y automatizada el cumplimiento de sus sitios web respecto a la Ley 21.719, porque las plataformas cambian constantemente y carecen de conocimientos legales para traducir la norma a código. 
+Actualmente, los métodos de revisión son manuales, lentos y existe un alto rechazo a dar accesos internos a software externo, lo que provoca el abandono de la gestión de cumplimiento y expone a las empresas a multas. 

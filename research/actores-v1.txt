@@ -1,0 +1,14 @@
+Desarrolladores FreeLancer en Chile: Le afecta directamente la nueva normativa chilena a la hora de realizar sus proyectos que contengan datos de usuarios. Se necesita aprender el contexto y uso de los datos, teniendo un acceso alto a este grupo.  
+
+Startups que operan en Chile: Con la nueva normativa chilena deben analizar el cumplimiento de la nueva ley de protección de datos personales. Se necesita aprender el contexto y uso de los datos, con un acceso alto.  
+
+Grandes empresas que operan en Chile: Con la nueva normativa chilena deben analizar el cumplimiento de la nueva ley de protección de datos personales. Se necesita aprender el contexto y uso de los datos, con un acceso alto.  
+
+Usuarios: Les interesa que sus datos personales estén resguardados correctamente. Se necesita aprender sobre plataformas que podrían contener sus datos personales, con un acceso medio.  
+
+Fiscalía de Chile: Le interesa que la ley de protección de datos personales se cumpla. Se necesita aprender como verifica el cumplimiento de las leyes, teniendo un acceso alto.  Matriz de priorización:
+
+Alto impacto y Baja influencia: Trabajador que maneja datos personales, a quienes se debe informar, observar y escuchar de forma prioritaria.  
+Alto impacto y Alta influencia: Dueño/gerente de la pyme, a quienes se debe investigar primero e involucrar en decisiones.  
+Bajo impacto y Baja influencia: Usuarios finales, a los que se debe monitorear pasivamente.  
+Bajo impacto y Alta influencia: Abogado/consultor en protección de datos, a quienes se debe involucrar y consultar antes de realizar integraciones.

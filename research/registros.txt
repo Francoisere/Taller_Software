@@ -1,0 +1,11 @@
+Datos de la sesión: Entrevista de validación 1, realizada el 02 de septiembre de 2026 a "P1 - Jefe de TI (E-commerce Mediano)" vía online. Responsables: Sofía Díaz y Benjamín Rodríguez.  
+Evidencia e interpretaciones:Evidencia: El entrevistado revisa múltiples pestañas buscando su política y señala que marketing instala plugins sin verificar cumplimiento. Interpretación/Implicación: El cumplimiento se vulnera constantemente; se requiere escaneo periódico.  Evidencia: Muestra un Excel de mapeo de datos abandonado y señala que gerencia cree que la Agencia tardará en fiscalizar. 
+
+Interpretación/Implicación: Baja percepción de riesgo; la estrategia debe enfatizar riesgos inmediatos.  Evidencia: Frustración al leer la ley, declarando "No soy abogado". 
+
+Interpretación/Implicación: Falta de conocimiento legal; el software debe entregar tareas técnicas sin jerga.  
+
+Evidencia: Uso tedioso de extensión manual página por página. Interpretación/Implicación: Las herramientas actuales no escalan; necesidad de crawling automatizado del dominio completo.  
+Evidencia: Postura defensiva y rechazo explícito a dar acceso a sus servidores por políticas de ciberseguridad. 
+Interpretación/Implicación: Alta desconfianza; la primera versión debe operar 100% externa (caja negra).  
+Control de privacidad: Se comprobó que se informó el propósito, se obtuvo autorización grabada, no se registraron datos secretos y la evidencia fue anonimizada (P01).  

@@ -1,0 +1,15 @@
+Patrones identificados:Pérdida de cumplimiento por cambios continuos (Alta confianza): Las páginas sufren modificaciones que alteran la conformidad legal sin control sistemático.  
+
+Baja percepción de urgencia y abandono de gestión (Media confianza): Existe desconexión entre el riesgo de multas y la prioridad operativa.
+
+Brecha entre el lenguaje legal y la implementación técnica (Alta confianza): Frustración en TI al intentar traducir normas a software.  Límite de las herramientas manuales vs. 
+
+volumen del sitio (Alta confianza): La revisión manual es ineficiente.  Rechazo a integraciones internas por ciberseguridad (Alta confianza): Resistencia a dar credenciales a soluciones externas.  
+
+Insights y decisiones:El cumplimiento requiere monitoreo continuo: Se decide diseñar un modelo de escaneo y monitoreo periódico automatizado. Responsable: Benjamín Vidal.  
+
+Priorización de escaneo externo (Caja Negra): Se decide limitar la primera versión a un escáner 100% externo evaluando información pública. Responsable: Franco Vela.  
+
+Traducción a tareas técnicas: Se decide formatear los reportes como un checklist técnico con instrucciones de remediación claras. Responsable: Sofía Diaz.  
+
+Rastreo profundo automatizado: Se decide desarrollar un algoritmo de crawling que recorra el sitio de forma autónoma. Responsable: Benjamín Rodríguez.  
