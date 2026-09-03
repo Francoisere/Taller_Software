@@ -1,0 +1,172 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const scanForm = document.getElementById("scan-form");
+    const targetUrlInput = document.getElementById("target-url-input");
+    const btnScan = document.getElementById("btn-scan");
+    const loadingState = document.getElementById("loading-state");
+    const resultsDashboard = document.getElementById("results-dashboard");
+    const loadingStep = document.getElementById("loading-step");
+    const progressBarFill = document.getElementById("progress-bar-fill");
+    const exampleChips = document.querySelectorAll(".btn-chip");
+    const bookmarkletLink = document.getElementById("bookmarklet-link");
+
+    // Configurar Bookmarklet ejecutable para navegador
+    setupBookmarklet();
+
+    // Event Listeners para Chips de ejemplo
+    exampleChips.forEach(chip => {
+        chip.addEventListener("click", () => {
+            targetUrlInput.value = chip.dataset.url;
+            scanForm.dispatchEvent(new Event("submit"));
+        });
+    });
+
+    // Form Submit Handler
+    scanForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const url = targetUrlInput.value.trim();
+        if (!url) return;
+
+        showLoadingState();
+        simulateProgressSteps();
+
+        try {
+            const response = await fetch("/api/v1/scan", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ url })
+            });
+
+            if (!response.ok) {
+                const errData = await response.json();
+                throw new Error(errData.detail || "Error en la respuesta del servidor");
+            }
+
+            const data = await response.json();
+            renderResults(data);
+        } catch (error) {
+            alert(`Error al auditar el sitio web: ${error.message}`);
+            hideLoadingState();
+        }
+    });
+
+    function showLoadingState() {
+        loadingState.classList.remove("hidden");
+        resultsDashboard.classList.add("hidden");
+        btnScan.disabled = true;
+        progressBarFill.style.width = "10%";
+    }
+
+    function hideLoadingState() {
+        loadingState.classList.add("hidden");
+        btnScan.disabled = false;
+    }
+
+    function simulateProgressSteps() {
+        const steps = [
+            "Iniciando navegador Headless Chromium en Playwright...",
+            "Navegando al sitio e interceptando peticiones salientes...",
+            "Auditando cookies depositadas pre-consentimiento y localStorage...",
+            "Inspeccionando enlaces en footer para Política de Privacidad...",
+            "Evaluando palabras clave normativas y canales ARCO (Ley 19.628)...",
+            "Generando dictamen técnico..."
+        ];
+
+        let currentStep = 0;
+        const interval = setInterval(() => {
+            currentStep++;
+            if (currentStep < steps.length) {
+                loadingStep.textContent = steps[currentStep];
+                progressBarFill.style.width = `${Math.min(95, (currentStep + 1) * 16)}%`;
+            } else {
+                clearInterval(interval);
+            }
+        }, 1800);
+    }
+
+    function renderResults(data) {
+        hideLoadingState();
+        progressBarFill.style.width = "100%";
+        resultsDashboard.classList.remove("hidden");
+
+        // Scroll suave hacia los resultados
+        resultsDashboard.scrollIntoView({ behavior: "smooth" });
+
+        // Target URL & Summary
+        document.getElementById("target-url-display").textContent = data.target_url;
+        document.getElementById("verdict-summary").textContent = data.verdict_summary;
+        document.getElementById("score-value").textContent = data.score;
+
+        // Verdict Badge
+        const verdictBadge = document.getElementById("verdict-badge");
+        verdictBadge.textContent = data.verdict;
+        verdictBadge.className = "verdict-badge " + data.verdict.toLowerCase().replace("_", "");
+
+        // Pilares
+        updatePilarCard("privacy", data.pilares.politica_privacidad);
+        updatePilarCard("arco", data.pilares.canales_arco);
+        updatePilarCard("cookies", data.pilares.consentimiento_cookies);
+
+        // Render Findings
+        const findingsList = document.getElementById("findings-list");
+        findingsList.innerHTML = "";
+
+        if (data.findings && data.findings.length > 0) {
+            data.findings.forEach(finding => {
+                const item = document.createElement("div");
+                item.className = "finding-item";
+
+                let icon = "ℹ️";
+                if (finding.status === "OK") icon = "✅";
+                if (finding.status === "WARNING") icon = "⚠️";
+                if (finding.status === "FAIL") icon = "❌";
+
+                item.innerHTML = `
+                    <span class="finding-icon">${icon}</span>
+                    <div class="finding-content">
+                        <h4>[${finding.pilar}] ${finding.title}</h4>
+                        <p>${finding.detail}</p>
+                    </div>
+                `;
+                findingsList.appendChild(item);
+            });
+        } else {
+            findingsList.innerHTML = "<p>No se registraron hallazgos adicionales.</p>";
+        }
+    }
+
+    function updatePilarCard(pilarKey, pilarData) {
+        const badge = document.getElementById(`pilar-${pilarKey}-badge`);
+        const fill = document.getElementById(`pilar-${pilarKey}-fill`);
+        const num = document.getElementById(`pilar-${pilarKey}-num`);
+
+        if (badge && fill && num && pilarData) {
+            badge.textContent = pilarData.status;
+            badge.className = `pilar-status-badge ${pilarData.status.toLowerCase()}`;
+
+            const percent = Math.round((pilarData.score / pilarData.max_score) * 100);
+            fill.style.width = `${percent}%`;
+            num.textContent = `${pilarData.score} / ${pilarData.max_score} pts`;
+        }
+    }
+
+    function setupBookmarklet() {
+        const host = window.location.origin;
+        // Script bookmarklet que toma la URL actual del usuario y abre el escáner
+        const bookmarkletCode = `javascript:(function(){var url=encodeURIComponent(window.location.href);window.open('${host}/?url='+url,'_blank');})();`;
+        if (bookmarkletLink) {
+            bookmarkletLink.href = bookmarkletCode;
+        }
+
+        // Si se recibe ?url= en los parámetros GET de la página actual, auto-auditar
+        const urlParams = new URLSearchParams(window.location.search);
+        const queryUrl = urlParams.get("url");
+        if (queryUrl) {
+            targetUrlInput.value = decodeURIComponent(queryUrl);
+            setTimeout(() => {
+                scanForm.dispatchEvent(new Event("submit"));
+            }, 500);
+        }
+    }
+});

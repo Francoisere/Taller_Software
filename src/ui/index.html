@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Auditoría de Cumplimiento de Datos Personales (Chile)</title>
+    <meta name="description" content="Herramienta de escaneo e inspección pasiva para el cumplimiento de la Ley N° 19.628 de Protección de Datos Personales en Chile.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glow-bg"></div>
+
+    <header class="app-header">
+        <div class="container header-container">
+            <div class="logo">
+                <span class="logo-badge">CHILE</span>
+                <span class="logo-title">DataPrivacy<span class="highlight">Audit</span></span>
+            </div>
+            <nav class="nav-links">
+                <a href="#scanner-section" class="active">Escáner</a>
+                <a href="#bookmarklet-section">Botón Navegador</a>
+                <a href="#normativa-section">Normativa</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section id="scanner-section" class="hero-section">
+            <div class="hero-badge">FASE 1: PRUEBA DE CONCEPTO</div>
+            <h1 class="hero-title">Auditoría Pasiva de Cumplimiento de Datos Personales</h1>
+            <p class="hero-subtitle">
+                Evalúa en tiempo real si un sitio web cumple con la <strong>Ley N° 19.628</strong> (y la Nueva Ley de Protección de Datos Personales de Chile) mediante inspección pasiva sin interacción.
+            </p>
+
+            <form id="scan-form" class="scan-form-card">
+                <div class="input-group">
+                    <span class="url-icon">🌐</span>
+                    <input 
+                        type="url" 
+                        id="target-url-input" 
+                        placeholder="https://ejemplo.cl" 
+                        required 
+                        autocomplete="off"
+                    >
+                    <button type="submit" id="btn-scan" class="btn-primary">
+                        <span class="btn-text">Auditar Sitio</span>
+                        <span class="btn-spinner hidden"></span>
+                    </button>
+                </div>
+                <div class="quick-examples">
+                    <span>Probar URLs de ejemplo:</span>
+                    <button type="button" class="btn-chip" data-url="https://gob.cl">gob.cl</button>
+                    <button type="button" class="btn-chip" data-url="https://www.bancochile.cl">bancochile.cl</button>
+                    <button type="button" class="btn-chip" data-url="https://www.falabella.com">falabella.com</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Loading Indicator -->
+        <div id="loading-state" class="loading-card hidden">
+            <div class="scanner-beam"></div>
+            <div class="loading-content">
+                <div class="spinner-lg"></div>
+                <h3>Ejecutando Inspección Pasiva en Playwright...</h3>
+                <p id="loading-step">Cargando sitio web y monitoreando tráfico saliente...</p>
+                <div class="progress-bar-track">
+                    <div id="progress-bar-fill" class="progress-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Dashboard -->
+        <div id="results-dashboard" class="results-dashboard hidden">
+            <!-- Summary Header Card -->
+            <div class="result-header-card" id="verdict-banner">
+                <div class="verdict-main">
+                    <div class="verdict-badge-wrapper">
+                        <span id="verdict-badge" class="verdict-badge">APROBADO</span>
+                        <div class="score-circle">
+                            <span id="score-value">90</span>
+                            <span class="score-max">/100</span>
+                        </div>
+                    </div>
+                    <div class="verdict-text">
+                        <h2 id="target-url-display">https://ejemplo.cl</h2>
+                        <p id="verdict-summary">El sitio cumple con los estándares mínimos normativos auditados.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pillars Grid -->
+            <div class="pilares-grid">
+                <!-- Pilar 1 -->
+                <div class="pilar-card" id="pilar-privacy">
+                    <div class="pilar-header">
+                        <span class="pilar-icon">📜</span>
+                        <div class="pilar-title-group">
+                            <h3>Política de Privacidad</h3>
+                            <span class="pilar-status-badge" id="pilar-privacy-badge">CUMPLE</span>
+                        </div>
+                    </div>
+                    <div class="pilar-body">
+                        <div class="pilar-score-bar">
+                            <div id="pilar-privacy-fill" class="score-fill" style="width: 100%;"></div>
+                        </div>
+                        <p class="pilar-score-num" id="pilar-privacy-num">35 / 35 pts</p>
+                    </div>
+                </div>
+
+                <!-- Pilar 2 -->
+                <div class="pilar-card" id="pilar-arco">
+                    <div class="pilar-header">
+                        <span class="pilar-icon">✉️</span>
+                        <div class="pilar-title-group">
+                            <h3>Derechos ARCO</h3>
+                            <span class="pilar-status-badge" id="pilar-arco-badge">CUMPLE</span>
+                        </div>
+                    </div>
+                    <div class="pilar-body">
+                        <div class="pilar-score-bar">
+                            <div id="pilar-arco-fill" class="score-fill" style="width: 100%;"></div>
+                        </div>
+                        <p class="pilar-score-num" id="pilar-arco-num">30 / 30 pts</p>
+                    </div>
+                </div>
+
+                <!-- Pilar 3 -->
+                <div class="pilar-card" id="pilar-cookies">
+                    <div class="pilar-header">
+                        <span class="pilar-icon">🍪</span>
+                        <div class="pilar-title-group">
+                            <h3>Consentimiento & Cookies</h3>
+                            <span class="pilar-status-badge" id="pilar-cookies-badge">CUMPLE</span>
+                        </div>
+                    </div>
+                    <div class="pilar-body">
+                        <div class="pilar-score-bar">
+                            <div id="pilar-cookies-fill" class="score-fill" style="width: 100%;"></div>
+                        </div>
+                        <p class="pilar-score-num" id="pilar-cookies-num">35 / 35 pts</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Findings List -->
+            <div class="findings-card">
+                <h3>Evidencias Técnicas y Hallazgos</h3>
+                <div id="findings-list" class="findings-list">
+                    <!-- Dynamic findings inserted here -->
+                </div>
+            </div>
+
+            <!-- Disclaimer Notice -->
+            <div class="disclaimer-alert">
+                <span class="disclaimer-icon">⚠️</span>
+                <p id="disclaimer-text">
+                    Este diagnóstico es una herramienta técnica de auditoría académica basada en la legislación chilena (Ley N° 19.628). No constituye una certificación ni dictamen jurídico vinculante.
+                </p>
+            </div>
+        </div>
+
+        <!-- Bookmarklet Section -->
+        <section id="bookmarklet-section" class="bookmarklet-card">
+            <div class="bookmarklet-header">
+                <h2>🖱️ Botón de Prueba Rápida en Navegador (Bookmarklet)</h2>
+                <p>Arrastra el siguiente botón a tu barra de marcadores del navegador para auditar la página que estés visitando con 1 solo clic:</p>
+            </div>
+            <div class="bookmarklet-actions">
+                <a id="bookmarklet-link" href="#" class="bookmarklet-button">🔍 Auditar Sitio Actual</a>
+                <span class="drag-hint">← Arrastra este botón a tus marcadores</span>
+            </div>
+        </section>
+
+        <!-- Normativa Section -->
+        <section id="normativa-section" class="normativa-card">
+            <h2>⚖️ Marco Normativo Auditable (Chile)</h2>
+            <div class="normativa-grid">
+                <div class="norm-item">
+                    <h4>1. Existencia de Política de Privacidad</h4>
+                    <p>Acceso directo desde el footer, HTTP 200 y presencia de cláusulas informativas de finalidades y responsable del tratamiento.</p>
+                </div>
+                <div class="norm-item">
+                    <h4>2. Canales para Derechos ARCO</h4>
+                    <p>Disponibilidad de canales visibles (correo o formulario) para ejercer Acceso, Rectificación, Cancelación u Oposición.</p>
+                </div>
+                <div class="norm-item">
+                    <h4>3. Bloqueo Previo de Rastreadores</h4>
+                    <p>Ningún script o cookie de terceros (Google Analytics, Facebook Pixel, etc.) debe inyectarse antes de la autorización explícita.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="container">
+            <p>© 2026 - Taller de Desarrollo de Software | Sofía Díaz - Benjamín Rodriguez - Franco Vela - Benjamín Vidal</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
