@@ -62,11 +62,8 @@ async def run_scan_get(url: str = Query(..., description="URL a auditar vía GET
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error durante el escaneo: {str(e)}")
 
-# Montar carpeta UI si existe
+# Montar archivos estáticos de la interfaz web en la raíz "/" (debe ir después de los endpoints de la API)
 ui_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "ui")
 if os.path.exists(ui_dir):
-    app.mount("/ui", StaticFiles(directory=ui_dir), name="ui")
+    app.mount("/", StaticFiles(directory=ui_dir, html=True), name="ui")
 
-    @app.get("/")
-    async def serve_index():
-        return FileResponse(os.path.join(ui_dir, "index.html"))

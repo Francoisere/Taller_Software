@@ -15,21 +15,35 @@ document.addEventListener("DOMContentLoaded", () => {
     // Event Listeners para Chips de ejemplo
     exampleChips.forEach(chip => {
         chip.addEventListener("click", () => {
-            targetUrlInput.value = chip.dataset.url;
-            scanForm.dispatchEvent(new Event("submit"));
+            const sampleUrl = chip.dataset.url;
+            targetUrlInput.value = sampleUrl;
+            startScan(sampleUrl);
         });
     });
 
     // Form Submit Handler
-    scanForm.addEventListener("submit", async (e) => {
+    scanForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const url = targetUrlInput.value.trim();
+        if (url) {
+            startScan(url);
+        }
+    });
+
+    async function startScan(rawUrl) {
+        let url = rawUrl.trim();
         if (!url) return;
 
+        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+            url = "https://" + url;
+            targetUrlInput.value = url;
+        }
+
         showLoadingState();
-        simulateProgressSteps();
+        const stopProgress = simulateProgressSteps();
 
         try {
+            console.log("Iniciando escaneo para:", url);
             const response = await fetch("/api/v1/scan", {
                 method: "POST",
                 headers: {
@@ -38,18 +52,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify({ url })
             });
 
+            stopProgress();
+
             if (!response.ok) {
-                const errData = await response.json();
+                const errData = await response.json().catch(() => ({ detail: response.statusText }));
                 throw new Error(errData.detail || "Error en la respuesta del servidor");
             }
 
             const data = await response.json();
+            console.log("Resultado del escaneo:", data);
             renderResults(data);
         } catch (error) {
-            alert(`Error al auditar el sitio web: ${error.message}`);
+            stopProgress();
             hideLoadingState();
+            alert(`Error al auditar el sitio web: ${error.message}`);
         }
-    });
+    }
 
     function showLoadingState() {
         loadingState.classList.remove("hidden");
@@ -78,11 +96,11 @@ document.addEventListener("DOMContentLoaded", () => {
             currentStep++;
             if (currentStep < steps.length) {
                 loadingStep.textContent = steps[currentStep];
-                progressBarFill.style.width = `${Math.min(95, (currentStep + 1) * 16)}%`;
-            } else {
-                clearInterval(interval);
+                progressBarFill.style.width = `${Math.min(95, (currentStep + 1) * 15)}%`;
             }
         }, 1800);
+
+        return () => clearInterval(interval);
     }
 
     function renderResults(data) {
@@ -153,20 +171,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function setupBookmarklet() {
         const host = window.location.origin;
-        // Script bookmarklet que toma la URL actual del usuario y abre el escáner
+        // Script bookmarklet que toma la URL actual del usuario y la envía a auditar
         const bookmarkletCode = `javascript:(function(){var url=encodeURIComponent(window.location.href);window.open('${host}/?url='+url,'_blank');})();`;
         if (bookmarkletLink) {
             bookmarkletLink.href = bookmarkletCode;
         }
 
-        // Si se recibe ?url= en los parámetros GET de la página actual, auto-auditar
+        // Si se recibe ?url= en los parámetros GET de la página actual (vía bookmarklet)
         const urlParams = new URLSearchParams(window.location.search);
         const queryUrl = urlParams.get("url");
         if (queryUrl) {
-            targetUrlInput.value = decodeURIComponent(queryUrl);
+            const decoded = decodeURIComponent(queryUrl);
+            targetUrlInput.value = decoded;
             setTimeout(() => {
-                scanForm.dispatchEvent(new Event("submit"));
-            }, 500);
+                startScan(decoded);
+            }, 300);
         }
     }
 });
