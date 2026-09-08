@@ -80,26 +80,43 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    text-decoration: none;
+    user-select: none;
 }
 
-.logo-badge {
-    background: linear-gradient(135deg, #D97706, #EF4444);
-    color: #FFF;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 3px 8px;
-    border-radius: 6px;
-    letter-spacing: 1px;
+.logo-icon {
+    font-size: 24px;
+    filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.5));
+    animation: shieldGlow 3s infinite alternate ease-in-out;
+}
+
+@keyframes shieldGlow {
+    from { filter: drop-shadow(0 0 4px rgba(0, 229, 255, 0.3)); }
+    to { filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.7)); }
 }
 
 .logo-title {
     font-family: var(--font-heading);
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
 }
 
 .logo-title .highlight {
     color: var(--accent-cyan);
+    font-weight: 700;
+}
+
+.logo-badge {
+    background: linear-gradient(135deg, #1E40AF, #DC2626);
+    color: #FFFFFF;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 5px;
+    letter-spacing: 1.5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .nav-links {

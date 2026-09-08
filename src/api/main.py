@@ -9,7 +9,7 @@ from src.scanner.inspector import WebInspector
 from src.scanner.rules_engine import RulesEngine
 
 app = FastAPI(
-    title="Plataforma de Auditoría de Cumplimiento de Datos Personales (Chile)",
+    title="DataCheck.cl - Plataforma de Auditoría de Cumplimiento de Datos Personales (Chile)",
     description="API de escaneo pasivo y evaluación normativa binaria para la Ley N° 19.628 y Nueva Ley de Protección de Datos Personales de Chile.",
     version="1.0.0"
 )
